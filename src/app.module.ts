@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import typeOrmConfig from './user/infraestructure/config/Datasource';
 import { UserModule } from './user/user.module';
+import { SwaggerModule } from '@nestjs/swagger';
 
 @Module({
   imports: [
