@@ -6,7 +6,6 @@ import { SERVER_PORT } from './user/infraestructure/config/Env';
 import { configureCors } from './user/infraestructure/config/Cors';
 import { configureSwagger } from './user/infraestructure/config/Swagger';
 import { configureGlobalPipes } from './user/infraestructure/config/Pipes';
-import { VersioningType } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
