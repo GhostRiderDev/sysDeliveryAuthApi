@@ -1,12 +1,10 @@
-import { User } from "src/user/domain/model/User";
-import { UserEntity } from "../persistence/UserEntity";
-import { IUserMapperEntity } from "./IUserMapperEntity";
-import { Injectable } from "@nestjs/common";
-
+import { User } from 'src/user/domain/model/User';
+import { UserEntity } from '../persistence/UserEntity';
+import { IUserMapperEntity } from './IUserMapperEntity';
+import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class UserMapperEntity  implements IUserMapperEntity {
-
+export class UserMapperEntity implements IUserMapperEntity {
   toModel(userDB: UserEntity): User {
     return new User(
       userDB.id,
@@ -20,14 +18,11 @@ export class UserMapperEntity  implements IUserMapperEntity {
   }
 
   toEntity(user: User): UserEntity {
-    return new UserEntity(
-      user.id,
-      user.username,
-      user.email,
-      user.password,
-      user.role,
-      user.createdAt,
-      user.updatedAt,
-    );
+    const userEntity = new UserEntity();
+    userEntity.username = user.username;
+    userEntity.email = user.email;
+    userEntity.password = user.password;
+    userEntity.role = user.role;
+    return userEntity;
   }
 }

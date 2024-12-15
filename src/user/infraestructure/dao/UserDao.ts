@@ -1,4 +1,4 @@
-import { IUserMapperEntity } from '../mapper/IUserMapperEntity';
+import { IUserMapperEntity, IUserMapperEntityToken } from '../mapper/IUserMapperEntity';
 import { UserEntity } from '../persistence/UserEntity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,7 +11,7 @@ import { UserNotFound } from 'src/user/domain/error/UserNotFound';
 @Injectable()
 export class UserDao implements IUserRepository {
   constructor(
-    @Inject('IUserMapperEntity')
+    @Inject(IUserMapperEntityToken)
     private readonly userMapper: IUserMapperEntity,
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,

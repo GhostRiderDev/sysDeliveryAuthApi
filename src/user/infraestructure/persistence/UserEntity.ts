@@ -23,22 +23,4 @@ export class UserEntity {
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   updatedAt: Date;
-
-  constructor(
-    id: string,
-    username: string,
-    email: string,
-    password: string,
-    role: UserRole,
-    createdAt: Date,
-    updatedAt: Date,
-  ) {
-    this.id = id;
-    this.username = username;
-    this.email = email;
-    this.password = password;
-    this.role = role;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-  }
 }
