@@ -10,6 +10,7 @@ import { IAuthServiceToken } from './application/service/IAuthService';
 import { IUserRepositoryToken } from './domain/repository/IUserRepository';
 import { IUserMapperDtoModelToken } from './application/mapper/IUserMapperDtoModel';
 import { IUserMapperEntityToken } from './infraestructure/mapper/IUserMapperEntity';
+import { HashPasswordInterceptor } from './infraestructure/handler/HashPassword.interceptor';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
@@ -32,6 +33,7 @@ import { IUserMapperEntityToken } from './infraestructure/mapper/IUserMapperEnti
       provide: IUserMapperEntityToken,
       useClass: UserMapperEntity,
     },
+    HashPasswordInterceptor,
   ],
 })
 export class UserModule {}
