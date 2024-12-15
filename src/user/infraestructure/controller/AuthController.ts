@@ -1,12 +1,14 @@
-import { Body, Controller, Inject, Post } from "@nestjs/common";
+import { Body, Controller, Inject, Post, UseFilters } from "@nestjs/common";
 import { SignupUserDto } from "src/user/application/dto/SignupUser.dto";
 import { UserDetailsDto } from "src/user/application/dto/UserDetails.dto";
-import { IAuthService } from "src/user/application/service/IAuthService";
+import { IAuthService, IAuthServiceToken } from "src/user/application/service/IAuthService";
+import { UserErrorHandlerFilter } from "../handler/UserErrorHandler.filter";
 
 @Controller('auth')
+@UseFilters(new UserErrorHandlerFilter())
 export class AuthController {
   constructor(
-    @Inject('IAuthService')
+    @Inject(IAuthServiceToken)
     private readonly authService: IAuthService,
   ) {}
 

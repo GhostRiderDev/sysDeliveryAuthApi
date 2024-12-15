@@ -6,6 +6,10 @@ import { UserMapperEntity } from './infraestructure/mapper/UserMapperEntity';
 import { UserMapperDtoModel } from './application/mapper/UserMapperDtoModel';
 import { UserEntity } from './infraestructure/persistence/UserEntity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { IAuthServiceToken } from './application/service/IAuthService';
+import { IUserRepositoryToken } from './domain/repository/IUserRepository';
+import { IUserMapperDtoModelToken } from './application/mapper/IUserMapperDtoModel';
+import { IUserMapperEntityToken } from './infraestructure/mapper/IUserMapperEntity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
@@ -13,19 +17,19 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   exports: [TypeOrmModule],
   providers: [
     {
-      provide: 'IAuthService',
+      provide: IAuthServiceToken,
       useClass: AuthService,
     },
     {
-      provide: 'IUserRepository',
+      provide: IUserRepositoryToken,
       useClass: UserDao,
     },
     {
-      provide: 'IUserMapperDtoModel',
+      provide: IUserMapperDtoModelToken,
       useClass: UserMapperDtoModel,
     },
     {
-      provide: 'IUserMapperEntity',
+      provide: IUserMapperEntityToken,
       useClass: UserMapperEntity,
     },
   ],
