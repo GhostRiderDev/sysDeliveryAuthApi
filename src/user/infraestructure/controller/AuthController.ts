@@ -5,11 +5,13 @@ import { IAuthService, IAuthServiceToken } from "src/user/application/service/IA
 import { UserErrorHandlerFilter } from "../handler/UserErrorHandler.filter";
 import { HashPasswordInterceptor } from "../handler/HashPassword.interceptor";
 import { ApiTags } from "@nestjs/swagger";
+import { CacheInterceptor } from "@nestjs/cache-manager";
 
 
 @Controller('auth')
 @UseFilters(new UserErrorHandlerFilter())
 @ApiTags('Auth')
+@UseInterceptors(CacheInterceptor)
 export class AuthController {
   constructor(
     @Inject(IAuthServiceToken)
