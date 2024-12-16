@@ -11,8 +11,8 @@ export class UserMapperEntity implements IUserMapperEntity {
       userDB.username,
       userDB.email,
       userDB.password,
-      userDB.role,
       userDB.createdAt,
+      userDB.role,
       userDB.updatedAt,
     );
   }
