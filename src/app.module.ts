@@ -3,7 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import typeOrmConfig from './user/infraestructure/config/Datasource';
 import { UserModule } from './user/user.module';
-import { SwaggerModule } from '@nestjs/swagger';
 import { CacheModule } from '@nestjs/cache-manager';
 import { ThrottlerModule } from '@nestjs/throttler';
 
@@ -26,7 +25,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
     }),
     ThrottlerModule.forRoot([
       {
-        ttl: 120000, // 2 minutes
+        ttl: 30000, // 30 seconds
         limit: 10,
       },
     ]),

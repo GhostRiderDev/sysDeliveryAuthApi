@@ -5,7 +5,6 @@ import { Injectable } from '@nestjs/common';
 import { UserRole } from 'src/user/domain/enum/UserRole';
 import { User } from 'src/user/domain/model/User';
 
-
 @Injectable()
 export class UserMapperDtoModel implements IUserMapperDtoModel {
   toModel(dto: SignupUserDto, role: UserRole): User {
@@ -14,8 +13,8 @@ export class UserMapperDtoModel implements IUserMapperDtoModel {
       dto.username,
       dto.email,
       dto.password,
-      role,
       null,
+      role,
       null,
     );
   }

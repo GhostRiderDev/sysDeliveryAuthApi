@@ -1,13 +1,10 @@
-import {
-  ExceptionFilter,
-  Catch,
-  ArgumentsHost,
-} from '@nestjs/common';
+import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { UserAlreadyExist } from 'src/user/domain/error/UserAlreadyExist';
+import { UserInvalid } from 'src/user/domain/error/UserInvalid';
 import { UserNotFound } from 'src/user/domain/error/UserNotFound';
 
-@Catch(UserNotFound, UserAlreadyExist)
+@Catch(UserNotFound, UserAlreadyExist, UserInvalid)
 export class UserErrorHandlerFilter implements ExceptionFilter {
   catch(exception: UserNotFound | UserAlreadyExist, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
