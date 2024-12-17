@@ -4,18 +4,24 @@ import { UserAlreadyExist } from 'src/user/domain/error/UserAlreadyExist';
 import { UserInvalid } from 'src/user/domain/error/UserInvalid';
 import { UserNotFound } from 'src/user/domain/error/UserNotFound';
 
-@Catch(UserNotFound, UserAlreadyExist, UserInvalid)
+@Catch(UserNotFound, UserAlreadyExist, UserInvalid, Error)
 export class UserErrorHandlerFilter implements ExceptionFilter {
-  catch(exception: UserNotFound | UserAlreadyExist, host: ArgumentsHost) {
+  catch(
+    exception: UserNotFound | UserAlreadyExist | UserInvalid | Error,
+    host: ArgumentsHost,
+  ) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
-    response.status(exception.statusCode).json({
-      statusCode: exception.statusCode,
+    const statusCode = 'statusCode' in exception ? exception.statusCode : 500;
+    const message = statusCode === 500 ? 'Server error' : exception.message;
+
+    response.status(statusCode).json({
+      statusCode: statusCode,
       timestamp: new Date().toISOString(),
       path: request.url,
-      message: exception.message,
+      message: message,
     });
   }
 }

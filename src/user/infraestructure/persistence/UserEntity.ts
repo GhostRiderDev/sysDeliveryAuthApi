@@ -31,5 +31,4 @@ export class UserEntity {
   updateTimestamp() {
     this.updatedAt = new Date();
   }
-
 }

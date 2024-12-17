@@ -18,9 +18,11 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prepare": "husky"
+    "prepare": "husky",
+    "release": "standard-version && git push --follow-tags --no-verify"
   },
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "@nestjs/cache-manager": "^2.3.0",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.3.0",
@@ -39,6 +41,8 @@
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.4.15",
@@ -56,6 +60,7 @@
     "jest": "^29.7.0",
     "prettier": "^3.0.0",
     "source-map-support": "^0.5.21",
+    "standard-version": "^9.5.0",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "ts-loader": "^9.4.3",

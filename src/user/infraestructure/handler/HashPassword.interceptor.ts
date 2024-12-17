@@ -7,6 +7,8 @@ import {
 import { Observable, from } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import * as bcrypt from 'bcrypt';
+import { UserInvalid } from 'src/user/domain/error/UserInvalid';
+import { Constant } from 'src/user/domain/enum/Constant';
 
 @Injectable()
 export class HashPasswordInterceptor implements NestInterceptor {
@@ -15,7 +17,7 @@ export class HashPasswordInterceptor implements NestInterceptor {
     const { password } = request.body;
 
     if (!password) {
-      return next.handle();
+      throw new UserInvalid(Constant.INVALID_USER);
     }
 
     const saltRounds = 10;

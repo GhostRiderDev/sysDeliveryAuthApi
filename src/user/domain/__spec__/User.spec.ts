@@ -6,23 +6,31 @@ import { User } from '../model/User';
 describe('User domain model', () => {
   describe('Constructor', () => {
     it('should be create basic user', () => {
-      const id = "abcd-1234"
+      const id = 'abcd-1234';
       const username = 'Olvadis';
       const email = 'olvadis2004@gmail.com';
       const password = '12345';
       const role = UserRole.CLIENT;
-      const updatedAt = new Date()
-      const createdAt = new Date()
+      const updatedAt = new Date();
+      const createdAt = new Date();
 
-      const user = new User(id, username, email, password, createdAt, role, updatedAt);
+      const user = new User(
+        id,
+        username,
+        email,
+        password,
+        createdAt,
+        role,
+        updatedAt,
+      );
 
-      expect(user.id).toEqual(id)
+      expect(user.id).toEqual(id);
       expect(user.username).toEqual(username);
       expect(user.email).toEqual(email);
       expect(user.password).toEqual(password);
       expect(user.role).toEqual(role);
-      expect(user.createdAt).toEqual(createdAt)
-      expect(user.updatedAt).toEqual(updatedAt)
+      expect(user.createdAt).toEqual(createdAt);
+      expect(user.updatedAt).toEqual(updatedAt);
     });
 
     it('should be create full user', () => {
