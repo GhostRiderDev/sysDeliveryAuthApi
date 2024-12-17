@@ -18,7 +18,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { CacheInterceptor } from '@nestjs/cache-manager';
 import { API_VERSION } from '../config/Env';
 
-@Controller(`api/v${API_VERSION}/auth`)
+@Controller(`api/v${API_VERSION ?? 1}/auth`)
 @UseFilters(new UserErrorHandlerFilter())
 @ApiTags('Auth')
 @UseInterceptors(CacheInterceptor)

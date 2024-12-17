@@ -1,4 +1,7 @@
-import { IUserMapperEntity, IUserMapperEntityToken } from '../mapper/IUserMapperEntity';
+import {
+  IUserMapperEntity,
+  IUserMapperEntityToken,
+} from '../mapper/IUserMapperEntity';
 import { UserEntity } from '../persistence/UserEntity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';

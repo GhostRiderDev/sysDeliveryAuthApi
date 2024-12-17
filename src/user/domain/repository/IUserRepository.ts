@@ -1,5 +1,4 @@
-import { User } from "../model/User";
-
+import { User } from '../model/User';
 
 export const IUserRepositoryToken = 'IUserRepository';
 

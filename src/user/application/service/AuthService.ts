@@ -1,9 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IUserMapperDtoModel, IUserMapperDtoModelToken } from '../mapper/IUserMapperDtoModel';
+import {
+  IUserMapperDtoModel,
+  IUserMapperDtoModelToken,
+} from '../mapper/IUserMapperDtoModel';
 import { IAuthService } from './IAuthService';
 import { SignupUserDto } from '../dto/SignupUser.dto';
 import { UserDetailsDto } from '../dto/UserDetails.dto';
-import { IUserRepository, IUserRepositoryToken } from 'src/user/domain/repository/IUserRepository';
+import {
+  IUserRepository,
+  IUserRepositoryToken,
+} from 'src/user/domain/repository/IUserRepository';
 import { UserRole } from 'src/user/domain/enum/UserRole';
 
 @Injectable()

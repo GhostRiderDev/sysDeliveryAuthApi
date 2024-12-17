@@ -1,4 +1,4 @@
-import { Constant } from "../enum/Constant";
+import { Constant } from '../enum/Constant';
 
 export class UserNotFound extends Error {
   statusCode = 404;
