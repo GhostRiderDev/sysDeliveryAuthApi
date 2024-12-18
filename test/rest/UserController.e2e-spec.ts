@@ -49,9 +49,10 @@ describe('UserController (e2e)', () => {
       // given
 
       const userToRegister: SignupUserDto = {
-        email: 'olvadis@gmail.com',
+        email: 'olvadis12@gmail.com',
         password: 'password',
         username: 'olvadis',
+        phone: '+57 3126793940',
       };
 
       const userRegistered: UserDetailsDto = {
@@ -59,6 +60,7 @@ describe('UserController (e2e)', () => {
         email: userToRegister.email,
         username: userToRegister.username,
         role: 'CLIENT',
+        phone: userToRegister.phone,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
@@ -78,6 +80,7 @@ describe('UserController (e2e)', () => {
         .post(`/api/v${API_VERSION}/auth/signup`)
         .send(userToRegister);
 
+
       // then
       await testRequest.expect(201).expect(expectedResponse);
     });
@@ -89,6 +92,7 @@ describe('UserController (e2e)', () => {
         email: 'olvadis@gmail.com',
         password: 'password',
         username: 'olvadis',
+        phone: '+57 3126793940',
       };
 
       const expectedResponse = {
@@ -121,13 +125,14 @@ describe('UserController (e2e)', () => {
 
       const expectedResponse = {
         statusCode: 400,
-        message: 'Bad Request Exception',
+        message: Constant.PHONE_NOT_FOUND,
       };
 
       // when
       const testRequest: request.Test = request(app.getHttpServer())
         .post(`/api/v${API_VERSION}/auth/signup`)
         .send(userToRegister);
+
 
       // then
       await testRequest.expect(expectedResponse.statusCode).expect((res) => {
@@ -141,6 +146,7 @@ describe('UserController (e2e)', () => {
         email: 'olvadisgmail.com',
         password: 'password',
         username: 'olvadis',
+        phone: '+57 3126793940',
       };
 
       const expectedResponse = {

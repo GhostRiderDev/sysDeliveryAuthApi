@@ -18,6 +18,7 @@ describe('AuthService', () => {
     username: 'olvadis',
     email: 'olvadis@gmail.com',
     role: UserRole.CLIENT,
+    phone: '+57 1234567890',
     createdAt: new Date(),
     updatedAt: new Date(),
   };
@@ -33,8 +34,9 @@ describe('AuthService', () => {
             user.username,
             user.email,
             user.password,
-            null,
             role,
+            user.phone,
+            null,
             null,
           ),
       ),
@@ -49,8 +51,9 @@ describe('AuthService', () => {
             user.username,
             user.email,
             user.password,
-            user.createdAt,
             user.role,
+            user.phone,
+            user.createdAt,
             user.updatedAt,
           ),
         ),
@@ -68,6 +71,7 @@ describe('AuthService', () => {
         email: 'olvadis@gmail.com',
         password: 'password',
         username: 'olvadis',
+        phone: '+57 1234567890',
       };
 
       const user: User = new User(
@@ -75,8 +79,9 @@ describe('AuthService', () => {
         userDto.username,
         userDto.email,
         userDto.password,
-        null,
         UserRole.CLIENT,
+        userDto.phone,
+        null,
         null,
       );
 

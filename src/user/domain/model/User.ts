@@ -9,6 +9,7 @@ export class User {
   readonly email: string;
   readonly password: string;
   readonly role: UserRole;
+  readonly phone: string;
   readonly createdAt: Date;
   readonly updatedAt: Date;
 
@@ -17,14 +18,16 @@ export class User {
     username: string,
     email: string,
     password: string,
-    createdAt: Date,
     role: UserRole,
+    phone: string,
+    createdAt: Date,
     updatedAt: Date,
   ) {
     this.validNonEmpty(username);
     this.validNonEmpty(email);
     this.validNonEmpty(password);
     this.validNonEmpty(role);
+    this.validNonEmpty(phone);
     this.validRole(role);
 
     this.id = id;
@@ -33,6 +36,7 @@ export class User {
     this.password = password;
     this.createdAt = createdAt;
     this.role = role;
+    this.phone = phone;
     this.updatedAt = updatedAt;
   }
 

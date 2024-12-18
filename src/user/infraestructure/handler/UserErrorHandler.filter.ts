@@ -1,4 +1,10 @@
-import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from '@nestjs/common';
+import {
+  ExceptionFilter,
+  Catch,
+  ArgumentsHost,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { Request, Response } from 'express';
 import { UserNotFound } from 'src/user/domain/error/UserNotFound';
 import { UserAlreadyExist } from 'src/user/domain/error/UserAlreadyExist';
@@ -13,11 +19,15 @@ export class UserErrorHandlerFilter implements ExceptionFilter {
 
     let statusCode: number;
     let message: string;
-
+    
     if (exception instanceof HttpException) {
       statusCode = exception.getStatus();
       message = exception.message;
-    } else if (exception instanceof UserNotFound || exception instanceof UserAlreadyExist || exception instanceof UserInvalid) {
+    } else if (
+      exception instanceof UserNotFound ||
+      exception instanceof UserAlreadyExist ||
+      exception instanceof UserInvalid
+    ) {
       statusCode = (exception as any).statusCode || HttpStatus.BAD_REQUEST;
       message = exception.message;
     } else {

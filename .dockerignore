@@ -2,16 +2,27 @@ node_modules
 dist
 *.log
 *.md
-*.png
 .git
 .vscode
 .husky
 jest.config.js
 .prettierrc
 .eslintrc.js
+.github
+collectionApi
+tools
+.env
+.env.test
+
+*.txt
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.ico
 
 test
 *.spec.ts
 __spec__
 
-.github

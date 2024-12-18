@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsNotEmpty } from 'class-validator';
+import { IsEmail, IsNotEmpty, Validate } from 'class-validator';
+import { CountryCodeValidator } from 'src/user/infraestructure/constrain/ValidateCountryCode';
 
 export class SignupUserDto {
   @ApiProperty({ example: 'john_doe' })
@@ -13,4 +14,9 @@ export class SignupUserDto {
   @ApiProperty({ example: 'password123' })
   @IsNotEmpty()
   password: string;
+
+  @ApiProperty({ example: '+57 3133245423' })
+  @IsNotEmpty()
+  @Validate(CountryCodeValidator)
+  phone: string;
 }

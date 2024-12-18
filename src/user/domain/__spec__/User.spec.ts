@@ -6,22 +6,25 @@ import { User } from '../model/User';
 describe('User domain model', () => {
   describe('Constructor', () => {
     it('should be create basic user', () => {
-      const id = 'abcd-1234';
+      const id = null;
       const username = 'Olvadis';
       const email = 'olvadis2004@gmail.com';
       const password = '12345';
+      const phone = '+57 1234567890';
       const role = UserRole.CLIENT;
-      const updatedAt = new Date();
-      const createdAt = new Date();
+      const updatedAt = null;
+      const createdAt = null;
+
 
       const user = new User(
-        id,
+        null,
         username,
         email,
         password,
-        createdAt,
         role,
-        updatedAt,
+        phone,
+        null,
+        null,
       );
 
       expect(user.id).toEqual(id);
@@ -38,8 +41,19 @@ describe('User domain model', () => {
       const email = 'olvadis2004@gmail.com';
       const password = '12345';
       const role = UserRole.CLIENT;
+      const phone = '+57 1234567890';
 
-      const user = new User(null, username, email, password, null, role, null);
+
+      const user = new User(
+        null,
+        username,
+        email,
+        password,
+        role,
+        phone,
+        null,
+        null,
+      );
 
       expect(user.username).toEqual(username);
       expect(user.email).toEqual(email);
@@ -52,10 +66,10 @@ describe('User domain model', () => {
       const email = 'olvadis@gmail.com';
       const password = '12345';
       const role = UserRole.CLIENT;
+      const phone = '+57 1234567890';
 
       const exec = () =>
-        new User(null, username, email, password, null, role, null);
-
+        new User(null, username, email, password, role, phone, null, null);
       expect(exec).toThrow(UserInvalid);
       expect(exec).toThrow(Constant.INVALID_USER);
     });
@@ -65,9 +79,10 @@ describe('User domain model', () => {
       const email = 'olvadis@gmail.com';
       const password = '12345';
       const role = 'Student' as UserRole;
+      const phone = "+57 1234567890"
 
       const exec = () =>
-        new User(null, username, email, password, null, role, null);
+        new User(null, username, email, password, role, phone,  null, null);
 
       expect(exec).toThrow(UserInvalid);
       expect(exec).toThrow(Constant.INVALID_USER);

@@ -11,8 +11,9 @@ export class UserMapperEntity implements IUserMapperEntity {
       userDB.username,
       userDB.email,
       userDB.password,
-      userDB.createdAt,
       userDB.role,
+      userDB.phone,
+      userDB.createdAt,
       userDB.updatedAt,
     );
   }
@@ -23,6 +24,7 @@ export class UserMapperEntity implements IUserMapperEntity {
     userEntity.email = user.email;
     userEntity.password = user.password;
     userEntity.role = user.role;
+    userEntity.phone = user.phone;
     return userEntity;
   }
 }

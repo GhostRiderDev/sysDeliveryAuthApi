@@ -18,6 +18,9 @@ export class UserEntity {
   @Column({ type: 'enum', enum: UserRole, nullable: false })
   role: UserRole;
 
+  @Column({ length: 15, nullable: true })
+  phone: string;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
 

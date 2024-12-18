@@ -4,6 +4,7 @@ export class UserDetailsDto {
     readonly username: string,
     readonly email: string,
     readonly role: string,
+    readonly phone: string,
     readonly createdAt: Date,
     readonly updatedAt: Date,
   ) {
@@ -11,6 +12,7 @@ export class UserDetailsDto {
     this.username = username;
     this.email = email;
     this.role = role;
+    this.phone = phone;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
   }

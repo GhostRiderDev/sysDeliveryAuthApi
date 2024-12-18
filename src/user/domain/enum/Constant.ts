@@ -4,4 +4,6 @@ export enum Constant {
   INVALID_EMAIL = 'Invalid email',
   INVALID_PASSWORD = 'Invalid password',
   INVALID_USER = 'User invalid',
+  INVALID_PHONE = 'Invalid phone',
+  PHONE_NOT_FOUND = 'Phone not found',
 }

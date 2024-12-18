@@ -13,8 +13,9 @@ export class UserMapperDtoModel implements IUserMapperDtoModel {
       dto.username,
       dto.email,
       dto.password,
-      null,
       role,
+      dto.phone,
+      null,
       null,
     );
   }
@@ -25,6 +26,7 @@ export class UserMapperDtoModel implements IUserMapperDtoModel {
       model.username,
       model.email,
       model.role,
+      model.phone,
       model.createdAt,
       model.updatedAt,
     );
