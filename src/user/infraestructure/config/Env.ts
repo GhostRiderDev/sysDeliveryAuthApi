@@ -11,17 +11,20 @@ function getPath() {
 }
 
 const envPath = getPath();
-const envConfig = fs.readFileSync(envPath, 'utf-8')
+const envConfig = fs
+  .readFileSync(envPath, 'utf-8')
   .split('\n')
   .filter(Boolean)
-  .reduce((acc, line) => {
-    const [key, value] = line.split('=');
-    acc[key.trim()] = value.trim();
-    return acc;
-  }, {} as Record<string, string>);
+  .reduce(
+    (acc, line) => {
+      const [key, value] = line.split('=');
+      acc[key.trim()] = value.trim();
+      return acc;
+    },
+    {} as Record<string, string>,
+  );
 
 Object.assign(process.env, envConfig);
-
 
 export const {
   SERVER_PORT,

@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "DeliverySistem",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
