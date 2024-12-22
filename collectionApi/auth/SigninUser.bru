@@ -1,0 +1,18 @@
+meta {
+  name: SigninUser
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://{{AUTH_SERVER_IP}}:{{AUTH_SERVER_PORT}}/api/v{{API_VERSION}}/auth/signin
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "email": "olvadis2005@gmail.com",
+    "password": "12345"
+  }
+}

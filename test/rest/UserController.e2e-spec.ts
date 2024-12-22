@@ -80,7 +80,6 @@ describe('UserController (e2e)', () => {
         .post(`/api/v${API_VERSION}/auth/signup`)
         .send(userToRegister);
 
-
       // then
       await testRequest.expect(201).expect(expectedResponse);
     });
@@ -132,7 +131,6 @@ describe('UserController (e2e)', () => {
       const testRequest: request.Test = request(app.getHttpServer())
         .post(`/api/v${API_VERSION}/auth/signup`)
         .send(userToRegister);
-
 
       // then
       await testRequest.expect(expectedResponse.statusCode).expect((res) => {

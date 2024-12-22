@@ -1,8 +1,11 @@
 import {
   Body,
   Controller,
+  HttpCode,
+  HttpStatus,
   Inject,
   Post,
+  Res,
   UseFilters,
   UseInterceptors,
 } from '@nestjs/common';
@@ -17,6 +20,9 @@ import { HashPasswordInterceptor } from '../handler/HashPassword.interceptor';
 import { ApiTags } from '@nestjs/swagger';
 import { CacheInterceptor } from '@nestjs/cache-manager';
 import { API_VERSION } from '../config/Env';
+import { SigninUserDto } from 'src/user/application/dto/SigninUser.dto';
+import { TokenDto } from 'src/user/application/dto/Token.dto';
+import { Response } from 'express';
 
 @Controller(`api/v${API_VERSION ?? 1}/auth`)
 @UseFilters(new UserErrorHandlerFilter())
@@ -30,7 +36,16 @@ export class AuthController {
 
   @Post('/signup')
   @UseInterceptors(new HashPasswordInterceptor())
-  async signup(@Body() userDto: SignupUserDto): Promise<UserDetailsDto> {
-    return await this.authService.signupUser(userDto);
+  async signup(@Body() data: SignupUserDto): Promise<UserDetailsDto> {
+    return await this.authService.signupUser(data);
+  }
+
+  @Post('signin')
+  @HttpCode(HttpStatus.CREATED)
+  async signin(
+    @Body() userDto: SigninUserDto,
+    @Res({ passthrough: true }) response: Response,
+  ): Promise<TokenDto> {
+    return this.authService.signinUser(userDto, response);
   }
 }

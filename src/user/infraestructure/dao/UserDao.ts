@@ -10,6 +10,7 @@ import { IUserRepository } from 'src/user/domain/repository/IUserRepository';
 import { User } from 'src/user/domain/model/User';
 import { UserAlreadyExist } from 'src/user/domain/error/UserAlreadyExist';
 import { UserNotFound } from 'src/user/domain/error/UserNotFound';
+import { Constant } from 'src/user/domain/enum/Constant';
 
 @Injectable()
 export class UserDao implements IUserRepository {
@@ -41,7 +42,7 @@ export class UserDao implements IUserRepository {
     });
 
     if (!user) {
-      throw new UserNotFound(`User with email ${email} not found`);
+      throw new UserNotFound(Constant.USER_NOT_FOUND);
     }
 
     return this.userMapper.toModel(user);

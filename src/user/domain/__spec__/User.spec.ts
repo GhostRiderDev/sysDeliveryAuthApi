@@ -15,7 +15,6 @@ describe('User domain model', () => {
       const updatedAt = null;
       const createdAt = null;
 
-
       const user = new User(
         null,
         username,
@@ -42,7 +41,6 @@ describe('User domain model', () => {
       const password = '12345';
       const role = UserRole.CLIENT;
       const phone = '+57 1234567890';
-
 
       const user = new User(
         null,
@@ -79,10 +77,10 @@ describe('User domain model', () => {
       const email = 'olvadis@gmail.com';
       const password = '12345';
       const role = 'Student' as UserRole;
-      const phone = "+57 1234567890"
+      const phone = '+57 1234567890';
 
       const exec = () =>
-        new User(null, username, email, password, role, phone,  null, null);
+        new User(null, username, email, password, role, phone, null, null);
 
       expect(exec).toThrow(UserInvalid);
       expect(exec).toThrow(Constant.INVALID_USER);

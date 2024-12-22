@@ -5,6 +5,8 @@ import typeOrmConfig from './user/infraestructure/config/Datasource';
 import { UserModule } from './user/user.module';
 import { CacheModule } from '@nestjs/cache-manager';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { JwtModule } from '@nestjs/jwt';
+import { JWT_SECRET } from './user/infraestructure/config/Env';
 
 @Module({
   imports: [
@@ -16,6 +18,11 @@ import { ThrottlerModule } from '@nestjs/throttler';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) =>
         configService.get('typeorm'),
+    }),
+    JwtModule.register({
+      global: true,
+      secret: JWT_SECRET,
+      signOptions: { expiresIn: '2h' },
     }),
     UserModule,
     CacheModule.register({
