@@ -35,5 +35,5 @@ export const {
   DB_PASSWORD,
   API_VERSION,
   JWT_SECRET,
-  NODE_ENV
+  NODE_ENV,
 } = process.env;

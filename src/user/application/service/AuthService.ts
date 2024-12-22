@@ -35,7 +35,10 @@ export class AuthService implements IAuthService {
     return this.userMapper.toDto(newUser);
   }
 
-  async signinUser(userDto: SigninUserDto, response: Response): Promise<TokenDto> {
+  async signinUser(
+    userDto: SigninUserDto,
+    response: Response,
+  ): Promise<TokenDto> {
     const userDB = await this.userRepository.findUserByEmail(userDto.email);
     if (!userDB) {
       throw new UserNotFound(Constant.USER_NOT_FOUND);

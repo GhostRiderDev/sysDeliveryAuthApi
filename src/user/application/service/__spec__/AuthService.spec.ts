@@ -5,6 +5,7 @@ import { User } from 'src/user/domain/model/User';
 import { SignupUserDto } from '../../dto/SignupUser.dto';
 import { UserRole } from 'src/user/domain/enum/UserRole';
 import { UserDetailsDto } from '../../dto/UserDetails.dto';
+import { JwtService } from '@nestjs/jwt';
 
 jest.mock('src/user/domain/model/User');
 
@@ -12,6 +13,7 @@ describe('AuthService', () => {
   let authService: AuthService;
   let userMapper: IUserMapperDtoModel;
   let userRepository: IUserRepository;
+  let jwtService: JwtService;
 
   const userDetailsDto: UserDetailsDto = {
     id: 'uuid',
@@ -62,7 +64,9 @@ describe('AuthService', () => {
       findUserById: jest.fn(),
     };
 
-    authService = new AuthService(userMapper, userRepository);
+    jwtService = {} as JwtService;
+
+    authService = new AuthService(userMapper, userRepository, jwtService);
   });
 
   describe('signupUser', () => {

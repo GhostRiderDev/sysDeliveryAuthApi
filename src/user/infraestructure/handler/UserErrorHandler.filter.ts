@@ -20,7 +20,7 @@ export class UserErrorHandlerFilter implements ExceptionFilter {
     let statusCode: number;
     let message: string;
 
-    console.log("exception", exception);
+    console.log('exception', exception);
 
     if (exception instanceof HttpException) {
       statusCode = exception.getStatus();
