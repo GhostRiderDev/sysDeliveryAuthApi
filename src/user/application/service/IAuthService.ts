@@ -9,4 +9,5 @@ export const IAuthServiceToken = 'IAuthService';
 export interface IAuthService {
   signupUser(userDto: SignupUserDto): Promise<UserDetailsDto>;
   signinUser(userDto: SigninUserDto, response: Response): Promise<TokenDto>;
+  googleSignin(token: string): Promise<TokenDto>;
 }

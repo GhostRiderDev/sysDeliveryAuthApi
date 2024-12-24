@@ -36,4 +36,5 @@ export const {
   API_VERSION,
   JWT_SECRET,
   NODE_ENV,
+  GOOGLE_CLIENT_ID,
 } = process.env;

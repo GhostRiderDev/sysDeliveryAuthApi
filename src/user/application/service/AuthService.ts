@@ -28,6 +28,15 @@ export class AuthService implements IAuthService {
     private readonly userRepository: IUserRepository,
     private readonly jwtService: JwtService,
   ) {}
+  async googleSignin(email: string): Promise<TokenDto> {
+    const user = await this.userRepository.findUserByEmail(email);
+
+    const { id, role } = user;
+
+    const { accessToken } = await this.dispatchToken(id, role);
+
+    return { accessToken };
+  }
 
   async signupUser(userDto: SignupUserDto): Promise<UserDetailsDto> {
     const user = this.userMapper.toModel(userDto, UserRole.CLIENT);
@@ -50,12 +59,9 @@ export class AuthService implements IAuthService {
       throw new UnauthorizedException(Constant.INVALID_PASSWORD);
     }
 
-    const payload = {
-      sub: userDB.id,
-      role: userDB.role,
-    };
+    const { id, role } = userDB;
 
-    const accessToken = await this.jwtService.signAsync(payload);
+    const { accessToken } = await this.dispatchToken(id, role);
 
     response.cookie('accessToken', accessToken, {
       httpOnly: process.env.NODE_ENV === 'production',
@@ -63,10 +69,17 @@ export class AuthService implements IAuthService {
       maxAge: 2 * 60 * 60 * 1000, // 2 hours
     });
 
-    const res: TokenDto = {
-      accessToken,
+    return { accessToken };
+  }
+
+  private async dispatchToken(id: string, role: string): Promise<TokenDto> {
+    const payload = {
+      sub: id,
+      role,
     };
 
-    return res;
+    const accessToken = await this.jwtService.signAsync(payload);
+
+    return { accessToken };
   }
 }

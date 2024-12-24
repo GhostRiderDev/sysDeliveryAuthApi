@@ -5,8 +5,10 @@ import {
   HttpStatus,
   Inject,
   Post,
+  Req,
   Res,
   UseFilters,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { SignupUserDto } from 'src/user/application/dto/SignupUser.dto';
@@ -22,7 +24,9 @@ import { CacheInterceptor } from '@nestjs/cache-manager';
 import { API_VERSION } from '../config/Env';
 import { SigninUserDto } from 'src/user/application/dto/SigninUser.dto';
 import { TokenDto } from 'src/user/application/dto/Token.dto';
-import { Response } from 'express';
+import { Response, Request } from 'express';
+import { GoogleTokenDto } from 'src/user/application/dto/GoogleToken.dto';
+import { GoogleAuthGuard } from '../constrain/GoogleAuthGuard';
 
 @Controller(`api/v${API_VERSION ?? 1}/auth`)
 @UseFilters(new UserErrorHandlerFilter())
@@ -47,5 +51,14 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response,
   ): Promise<TokenDto> {
     return this.authService.signinUser(userDto, response);
+  }
+
+  @Post('google')
+  @UseGuards(GoogleAuthGuard)
+  async googleSignin(
+    @Body() data: GoogleTokenDto,
+    @Req() req: Request,
+  ): Promise<TokenDto> {
+    return this.authService.googleSignin(req.body.email);
   }
 }

@@ -27,9 +27,7 @@ export class UserDao implements IUserRepository {
     });
 
     if (userExists) {
-      throw new UserAlreadyExist(
-        `User with email ${user.email} already exists`,
-      );
+      throw new UserAlreadyExist(Constant.USER_ALREADY_EXISTS);
     }
 
     const userToSave = this.userMapper.toEntity(user);
@@ -54,7 +52,7 @@ export class UserDao implements IUserRepository {
     });
 
     if (!user) {
-      throw new UserNotFound(`User with id ${id} not found`);
+      throw new UserNotFound(Constant.USER_NOT_FOUND);
     }
 
     return this.userMapper.toModel(user);
